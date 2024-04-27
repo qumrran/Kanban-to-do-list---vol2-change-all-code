@@ -13,6 +13,13 @@ function addTaskToState(taskId, taskText) {
 	console.log(state);
 }
 
+
+function clearAllTasksFromState() {
+    state = { toDoState: [], inProgressState: [], doneState: [] };
+    console.log(state);
+}
+
+
 // Funkcja usuwająca zadanie na podstawie identyfikatora
 function deleteTaskfromStateById(taskId) {
 	for (let key in state) {
@@ -22,12 +29,6 @@ function deleteTaskfromStateById(taskId) {
 }
 
 // Funkcją usuwająca wszystkie zdania
-function clearAllTasksFromState() {
-	state.toDoState = [];
-	state.inProgressState = [];
-	state.doneState = [];
-	console.log(state);
-}
 
 // Funkcja aktualizująca stan podczas przeciagania zadań miedzy kolumnami
 function updateTaskStateInColumn(zone, taskId, taskText) {
@@ -53,6 +54,7 @@ function updateTaskStateInColumn(zone, taskId, taskText) {
 }
 
 export {
+	state,
 	addTaskToState,
 	deleteTaskfromStateById,
 	clearAllTasksFromState,

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +9,7 @@
     <script src="https://kit.fontawesome.com/e674f966a8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
     <div class="board">
 
@@ -17,19 +19,19 @@
             <button class="clear-tasks-btn">Clear All Tasks<i class="fa-solid fa-trash"></i></button>
 
         </div>
-        
 
-        <div class="column" id="todo-column">
+
+        <div class="column">
             <h2 class="column-title">To Do <span class="task-count">0</span></h2>
-           
+            <div class="innerColumnForTasks" , id="todo-column"></div>
         </div>
-        <div class="column" id="in-progress-column">
+        <div class="column">
             <h2 class="column-title">In Progress <span class="task-count">0</span></h2>
-            
+            <div class="innerColumnForTasks" , id="in-progress-column"></div>
         </div>
-        <div class="column" id="done-column">
+        <div class="column">
             <h2 class="column-title">Done <span class="task-count">0</span></h2>
-            
+            <div class="innerColumnForTasks" , id="done-column"></div>
         </div>
     </div>
 
@@ -37,4 +39,5 @@
     <script type="module" src="./script.js"></script>
 
 </body>
+
 </html>

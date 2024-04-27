@@ -5,34 +5,63 @@ import {
 	updateTaskStateInColumn,
 } from './state.js';
 
+import { renderTasks } from './render.js';
+
 const addTaskButton = document.querySelector('.add-task-btn');
 const taskInput = document.querySelector('.task-input');
 const todoColumn = document.querySelector('#todo-column');
 const columns = document.querySelectorAll('.column');
+const innerColumnsForTasks = document.querySelectorAll(".innerColumnForTasks");
 const clearAllTasks = document.querySelector('.clear-tasks-btn');
 
-// Funkcja tworzenia i usuwania nowego zadania
-function createTask(taskText) {
-	const taskElement = document.createElement('div');
-	taskElement.classList.add('task');
-
-	const taskContent = document.createElement('p');
-	taskContent.textContent = taskText;
-	taskContent.classList.add('task-content');
-
-	const deleteButton = document.createElement('button');
-	deleteButton.innerHTML = '<i class="fas fa-minus-circle"></i>';
-	deleteButton.classList.add('delete-button');
-
+// Obsługa dodawania nowego zadania
+addTaskButton.addEventListener('click', () => {
+	const taskText = taskInput.value.trim();
 	const taskId = Date.now().toString();
-	taskElement.setAttribute('id', taskId);
-	taskElement.appendChild(taskContent);
-	taskElement.appendChild(deleteButton);
+	if (taskText !== '') {
+		addTaskToState(taskId, taskText);
+		taskInput.value = '';
+		renderTasks();
+		updateCounters();
+	}
+});
 
-	addTaskToState(taskId, taskText);
-
-	return taskElement;
+// Aktualizacja liczników zadań w kolumnach
+function updateCounters() {
+	columns.forEach((column) => {
+		const tasks = column.querySelectorAll('.task');
+		const taskCountElement = column.querySelector('.task-count');
+		taskCountElement.textContent = tasks.length;
+	});
 }
+
+clearAllTasks.addEventListener('click', clearAllTasksFromColumn);
+
+// Obsługa usuwania wszystkich zadań z kolumn
+function clearAllTasksFromColumn() {
+	clearAllTasksFromState();
+	renderTasks();
+	updateCounters();
+}
+
+// Funkcja tworzenia i usuwania nowego zadania
+// function createTask () {
+
+// 	return taskId;
+// taskContent.classList.add('task-content');
+
+// const deleteButton = document.createElement('button');
+// deleteButton.innerHTML = '<i class="fas fa-minus-circle"></i>';
+// deleteButton.classList.add('delete-button');
+
+// taskElement.setAttribute('id', taskId);
+// taskElement.appendChild(taskContent);
+// taskElement.appendChild(deleteButton);
+
+// tu dodaje do stanu !
+
+// return taskElement;
+// }
 
 // Obsługa kliknięcia na przyciskach usuwania
 columns.forEach((column) => {
@@ -42,8 +71,8 @@ columns.forEach((column) => {
 			const taskToDelete = deleteButton.closest('.task');
 			const taskId = taskToDelete.id;
 			if (taskId) {
-				deleteTaskfromStateById(taskId);
-				taskToDelete.remove();
+				deleteTaskfromStateById(taskId); // tu usówa ze stanu !
+				renderTasks();
 				updateCounters();
 			}
 		}
@@ -64,7 +93,7 @@ function makeTaskDraggable(taskElement) {
 }
 
 // Obsługa przeciągania i upuszczania elementów
-columns.forEach((zone) => {
+innerColumnsForTasks.forEach((zone) => {
 	zone.addEventListener('dragover', (e) => {
 		e.preventDefault();
 
@@ -92,60 +121,39 @@ columns.forEach((zone) => {
 	});
 });
 
-// Obsługa dodawania nowego zadania
-addTaskButton.addEventListener('click', () => {
-	const taskText = taskInput.value.trim();
-	if (taskText !== '') {
-		const taskElement = createTask(taskText);
-		todoColumn.appendChild(taskElement);
-		taskInput.value = '';
-		makeTaskDraggable(taskElement);
-		updateCounters();
-	}
-});
+// // Funkcja do określania pozycji myszy względem zadań
+// const insertAboveTask = (zone, mouseY) => {
+// 	const els = zone.querySelectorAll('.task:not(.is-dragging)');
 
-// Funkcja do określania pozycji myszy względem zadań
-const insertAboveTask = (zone, mouseY) => {
-	const els = zone.querySelectorAll('.task:not(.is-dragging)');
+// 	let closestTask = null;
+// 	let closestOffset = Number.NEGATIVE_INFINITY;
 
-	let closestTask = null;
-	let closestOffset = Number.NEGATIVE_INFINITY;
+// 	els.forEach((task) => {
+// 		const { top } = task.getBoundingClientRect();
+// 		const offset = mouseY - top;
 
-	els.forEach((task) => {
-		const { top } = task.getBoundingClientRect();
-		const offset = mouseY - top;
+// 		if (offset < 0 && offset > closestOffset) {
+// 			closestOffset = offset;
+// 			closestTask = task;
+// 		}
+// 	});
 
-		if (offset < 0 && offset > closestOffset) {
-			closestOffset = offset;
-			closestTask = task;
-		}
-	});
+// 	return closestTask;
+// };
 
-	return closestTask;
-};
+// // Obsługa usuwania wszystkich zadań z kolumn
+// function clearAllTasksFromColumn(column) {
+// 	const tasks = column.querySelectorAll('.task');
+// 	tasks.forEach((task) => {
+// 		task.remove();
+// 	});
+// 	clearAllTasksFromState();
+// 	updateCounters();
+// }
 
-// Aktualizacja liczników zadań w kolumnach
-function updateCounters() {
-	columns.forEach((column) => {
-		const tasks = column.querySelectorAll('.task');
-		const taskCountElement = column.querySelector('.task-count');
-		taskCountElement.textContent = tasks.length;
-	});
-}
-
-// Obsługa usuwania wszystkich zadań z kolumn
-function clearAllTasksFromColumn(column) {
-	const tasks = column.querySelectorAll('.task');
-	tasks.forEach((task) => {
-		task.remove();
-	});
-	clearAllTasksFromState();
-	updateCounters();
-}
-
-// Nasłuchiwanie na kliknięcie przycisku usuwania wszystkich zadań
-clearAllTasks.addEventListener('click', () => {
-	columns.forEach((column) => {
-		clearAllTasksFromColumn(column);
-	});
-});
+// // Nasłuchiwanie na kliknięcie przycisku usuwania wszystkich zadań
+// clearAllTasks.addEventListener('click', () => {
+// 	columns.forEach((column) => {
+// 		clearAllTasksFromColumn(column);
+// 	});
+// });
