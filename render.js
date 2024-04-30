@@ -1,4 +1,5 @@
 import { state } from './state.js';
+import { makeTaskDraggable } from './dragdrop.js';
 
 function renderTasks() {
 	const todoColumn = document.getElementById('todo-column');
@@ -20,8 +21,12 @@ function renderTasks() {
 		deleteButton.innerHTML = '<i class="fas fa-minus-circle"></i>';
 		deleteButton.classList.add('delete-button');
         taskElement.appendChild(deleteButton);
+        makeTaskDraggable(taskElement);
+        
 		return taskElement;
+        
 	}
+   
 
 	// Renderowanie zadań w każdej kolumnie
 	state.toDoState.forEach((task) => {
@@ -38,6 +43,9 @@ function renderTasks() {
 		const taskElement = createTaskElement(task.id, task.text);
 		doneColumn.appendChild(taskElement);
 	});
+
 }
+
+
 
 export { renderTasks };

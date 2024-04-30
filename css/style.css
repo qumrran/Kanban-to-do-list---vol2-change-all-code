@@ -35,6 +35,11 @@ body {
   border-radius: 0.313rem;
   background-color: #252935;
 }
+.board .column .innerColumnForTasks {
+  width: 100%;
+  height: calc(100% - 3.125rem);
+  background-color: red;
+}
 .board .column .column-title {
   display: flex;
   justify-content: space-between;

@@ -11,8 +11,12 @@ const addTaskButton = document.querySelector('.add-task-btn');
 const taskInput = document.querySelector('.task-input');
 const todoColumn = document.querySelector('#todo-column');
 const columns = document.querySelectorAll('.column');
-const innerColumnsForTasks = document.querySelectorAll(".innerColumnForTasks");
+
 const clearAllTasks = document.querySelector('.clear-tasks-btn');
+
+
+
+
 
 // Obsługa dodawania nowego zadania
 addTaskButton.addEventListener('click', () => {
@@ -23,6 +27,7 @@ addTaskButton.addEventListener('click', () => {
 		taskInput.value = '';
 		renderTasks();
 		updateCounters();
+		
 	}
 });
 
@@ -44,24 +49,7 @@ function clearAllTasksFromColumn() {
 	updateCounters();
 }
 
-// Funkcja tworzenia i usuwania nowego zadania
-// function createTask () {
 
-// 	return taskId;
-// taskContent.classList.add('task-content');
-
-// const deleteButton = document.createElement('button');
-// deleteButton.innerHTML = '<i class="fas fa-minus-circle"></i>';
-// deleteButton.classList.add('delete-button');
-
-// taskElement.setAttribute('id', taskId);
-// taskElement.appendChild(taskContent);
-// taskElement.appendChild(deleteButton);
-
-// tu dodaje do stanu !
-
-// return taskElement;
-// }
 
 // Obsługa kliknięcia na przyciskach usuwania
 columns.forEach((column) => {
@@ -71,7 +59,7 @@ columns.forEach((column) => {
 			const taskToDelete = deleteButton.closest('.task');
 			const taskId = taskToDelete.id;
 			if (taskId) {
-				deleteTaskfromStateById(taskId); // tu usówa ze stanu !
+				deleteTaskfromStateById(taskId); 
 				renderTasks();
 				updateCounters();
 			}
@@ -79,81 +67,6 @@ columns.forEach((column) => {
 	});
 });
 
-// Funkcja, która sprawia, że element jest przeciągalny
-function makeTaskDraggable(taskElement) {
-	taskElement.draggable = true;
 
-	taskElement.addEventListener('dragstart', () => {
-		taskElement.classList.add('is-dragging');
-	});
+export {updateCounters};
 
-	taskElement.addEventListener('dragend', () => {
-		taskElement.classList.remove('is-dragging');
-	});
-}
-
-// Obsługa przeciągania i upuszczania elementów
-innerColumnsForTasks.forEach((zone) => {
-	zone.addEventListener('dragover', (e) => {
-		e.preventDefault();
-
-		const draggingTask = document.querySelector('.is-dragging');
-
-		if (draggingTask && draggingTask.parentNode !== zone) {
-			zone.appendChild(draggingTask);
-
-			const taskId = draggingTask.id;
-			const taskText = draggingTask.querySelector('.task-content').textContent;
-
-			updateTaskStateInColumn(zone, taskId, taskText);
-			updateCounters();
-		}
-
-		const mouseY = e.clientY;
-		const bottomTask = insertAboveTask(zone, mouseY);
-		const curTask = document.querySelector('.is-dragging');
-
-		if (!bottomTask) {
-			zone.appendChild(curTask);
-		} else {
-			zone.insertBefore(curTask, bottomTask);
-		}
-	});
-});
-
-// // Funkcja do określania pozycji myszy względem zadań
-// const insertAboveTask = (zone, mouseY) => {
-// 	const els = zone.querySelectorAll('.task:not(.is-dragging)');
-
-// 	let closestTask = null;
-// 	let closestOffset = Number.NEGATIVE_INFINITY;
-
-// 	els.forEach((task) => {
-// 		const { top } = task.getBoundingClientRect();
-// 		const offset = mouseY - top;
-
-// 		if (offset < 0 && offset > closestOffset) {
-// 			closestOffset = offset;
-// 			closestTask = task;
-// 		}
-// 	});
-
-// 	return closestTask;
-// };
-
-// // Obsługa usuwania wszystkich zadań z kolumn
-// function clearAllTasksFromColumn(column) {
-// 	const tasks = column.querySelectorAll('.task');
-// 	tasks.forEach((task) => {
-// 		task.remove();
-// 	});
-// 	clearAllTasksFromState();
-// 	updateCounters();
-// }
-
-// // Nasłuchiwanie na kliknięcie przycisku usuwania wszystkich zadań
-// clearAllTasks.addEventListener('click', () => {
-// 	columns.forEach((column) => {
-// 		clearAllTasksFromColumn(column);
-// 	});
-// });

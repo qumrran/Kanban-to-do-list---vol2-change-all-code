@@ -9,7 +9,6 @@ let state = {
 
 function addTaskToState(taskId, taskText) {
 	state.toDoState.push({ id: taskId, text: taskText });
-
 	console.log(state);
 }
 

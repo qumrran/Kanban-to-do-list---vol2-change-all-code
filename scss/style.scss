@@ -17,15 +17,20 @@ body {
 	}
 
 	.column {
+		
 		margin: 0.625rem;
 		padding: 0.625rem;
 		min-width: 15.625rem;
         max-width: 21.875rem;
-        
 		border: 0.063rem solid $border-thin-white;
 		border-radius: 0.313rem;
 		background-color: $backround-navy-blue;
 
+		.innerColumnForTasks {
+			width: 100%;
+			height: calc(100% - 3.125rem);
+			background-color: red;
+		}
 		.column-title {
 			display: flex;
 			justify-content: space-between;
@@ -47,6 +52,7 @@ body {
 				font-size: 0.875rem;
 			}
 		}
+		
 	}
 
 	.task-form {
@@ -154,3 +160,5 @@ body {
 .is-dragging {
 	opacity: 0.3;
 }
+
+
