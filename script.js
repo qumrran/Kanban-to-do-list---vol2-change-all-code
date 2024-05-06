@@ -14,20 +14,16 @@ const columns = document.querySelectorAll('.column');
 
 const clearAllTasks = document.querySelector('.clear-tasks-btn');
 
-
-
-
-
 // Obsługa dodawania nowego zadania
 addTaskButton.addEventListener('click', () => {
 	const taskText = taskInput.value.trim();
 	const taskId = Date.now().toString();
+
 	if (taskText !== '') {
 		addTaskToState(taskId, taskText);
 		taskInput.value = '';
 		renderTasks();
 		updateCounters();
-		
 	}
 });
 
@@ -49,8 +45,6 @@ function clearAllTasksFromColumn() {
 	updateCounters();
 }
 
-
-
 // Obsługa kliknięcia na przyciskach usuwania
 columns.forEach((column) => {
 	column.addEventListener('click', (event) => {
@@ -59,7 +53,7 @@ columns.forEach((column) => {
 			const taskToDelete = deleteButton.closest('.task');
 			const taskId = taskToDelete.id;
 			if (taskId) {
-				deleteTaskfromStateById(taskId); 
+				deleteTaskfromStateById(taskId);
 				renderTasks();
 				updateCounters();
 			}
@@ -67,6 +61,4 @@ columns.forEach((column) => {
 	});
 });
 
-
-export {updateCounters};
-
+export { updateCounters };

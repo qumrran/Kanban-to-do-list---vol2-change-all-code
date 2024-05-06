@@ -28,21 +28,19 @@ function renderTasks() {
 	}
    
 
-	// Renderowanie zadań w każdej kolumnie
-	state.toDoState.forEach((task) => {
-		const taskElement = createTaskElement(task.id, task.text);
-		todoColumn.appendChild(taskElement);
-	});
+	// Funkcja dodająca zadania z danej kolumny do odpowiedniego elementu DOM
+function addTasksToColumn(tasks, column) {
+    tasks.forEach((task) => {
+        const taskElement = createTaskElement(task.id, task.text);
+        column.appendChild(taskElement);
+    });
+}
 
-	state.inProgressState.forEach((task) => {
-		const taskElement = createTaskElement(task.id, task.text);
-		inProgressColumn.appendChild(taskElement);
-	});
+// Dodawanie zadań do odpowiednich kolumn
+addTasksToColumn(state.toDoState, todoColumn);
+addTasksToColumn(state.inProgressState, inProgressColumn);
+addTasksToColumn(state.doneState, doneColumn);
 
-	state.doneState.forEach((task) => {
-		const taskElement = createTaskElement(task.id, task.text);
-		doneColumn.appendChild(taskElement);
-	});
 
 }
 

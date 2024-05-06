@@ -1,6 +1,6 @@
-import { updateTaskStateInColumn } from "./state.js";
+import { state, updateTaskStateInColumn, updateAllTaskOrders } from "./state.js";
 import { updateCounters } from "./script.js";
-import { renderTasks } from "./render.js";
+
 
 const innerColumnsForTasks = document.querySelectorAll(".innerColumnForTasks");
 
@@ -33,6 +33,8 @@ innerColumnsForTasks.forEach((zone) => {
 
 			updateTaskStateInColumn(zone, taskId, taskText);
 			updateCounters();
+            updateAllTaskOrders();
+            console.log(state);
 		}
 
 		const mouseY = e.clientY;
@@ -41,9 +43,12 @@ innerColumnsForTasks.forEach((zone) => {
 
 		if (!bottomTask) {
 			zone.appendChild(curTask);
+           
 		} else {
 			zone.insertBefore(curTask, bottomTask);
+           
 		}
+      
    
 	});
 });
@@ -67,6 +72,7 @@ const insertAboveTask = (zone, mouseY) => {
 
 	return closestTask;
 };
+
 
 
 export {makeTaskDraggable};
