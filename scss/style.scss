@@ -114,7 +114,7 @@ body {
 	.task {
 		height: 2.8rem;
 		display: flex;
-		justify-content: space-evenly;
+		justify-content: right;
 		align-items: center;
 		color: $neutral-white;
 		margin: 0.625rem 0;
@@ -124,23 +124,32 @@ body {
 		background-color: $backround-black;
 		cursor: pointer;
 		transition: background-color 0.3s;
-        overflow-y: scroll;
+        
 
 		&:hover {
 			background-color: $backround-navy-blue;
 		}
 
-		.task-content {
-			font-weight: 600;
-            padding-right: 1.25rem;
+		// .task-content {
+		// 	font-weight: 600;
+        //     padding-right: 1.25rem;
 			
+		// }
+
+		.task-text {
+			display: block;
+			justify-self: start;
+			width: 8.3rem;
+			overflow-y: scroll;
+			overflow-x: scroll;
+			margin-right: 1rem;
 		}
 
 		.delete-button {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			
+			margin-left: 1rem;
 			width: 1.25rem;
 			height: 1.25rem;
 			font-size: 1.25rem;

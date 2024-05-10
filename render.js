@@ -14,23 +14,26 @@ function renderTasks() {
 	function createTaskElement(taskId, taskText) {
 		const taskElement = document.createElement('div');
 		taskElement.classList.add('task');
-		taskElement.textContent = taskText;
 		taskElement.setAttribute('id', taskId);
 
-		const deleteButton = document.createElement('button');
-		deleteButton.innerHTML = '<i class="fas fa-minus-circle"></i>';
-		deleteButton.classList.add('delete-button');
-		taskElement.appendChild(deleteButton);
+		const textParagraph = document.createElement('span');
+		textParagraph.textContent = taskText;
+		textParagraph.classList.add('task-text');
+		taskElement.appendChild(textParagraph);
 
 		const editButton = document.createElement('button');
 		editButton.innerHTML = '<i class="fas fa-edit"></i>';
 		editButton.classList.add('edit-button');
 		taskElement.appendChild(editButton);
 
+		const deleteButton = document.createElement('button');
+		deleteButton.innerHTML = '<i class="fas fa-minus-circle"></i>';
+		deleteButton.classList.add('delete-button');
+		taskElement.appendChild(deleteButton);
+
 		makeTaskDraggable(taskElement);
 		return taskElement;
 	}
-    
 
 	// Funkcja dodająca zadania z danej kolumny do odpowiedniego elementu DOM
 	function addTasksToColumn(tasks, column) {
