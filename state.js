@@ -23,6 +23,19 @@ function addTaskToState(taskId, taskText) {
     console.log(state);
 }
 
+
+    // Funkcja aktualizująca tekst zadania w obiekcie stanu
+function updateTaskTextinState(taskId, newText) {
+	for (let key in state) {
+		state[key].forEach(task => {
+			if (task.id === taskId) {
+				task.text = newText;
+			}
+		});
+	}
+	console.log(state);
+}
+
 // Czyszczenie wszystkich zadań ze stanu
 function clearAllTasksFromState() {
     state = { toDoState: [], inProgressState: [], doneState: [] };
@@ -69,4 +82,5 @@ export {
     clearAllTasksFromState,
     updateTaskStateInColumn,
 	updateAllTaskOrders,
+	updateTaskTextinState,
 };

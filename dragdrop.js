@@ -34,7 +34,7 @@ innerColumnsForTasks.forEach((zone) => {
 			updateTaskStateInColumn(zone, taskId, taskText);
 			updateCounters();
             updateAllTaskOrders();
-            console.log(state);
+           
 		}
 
 		const mouseY = e.clientY;
@@ -43,9 +43,11 @@ innerColumnsForTasks.forEach((zone) => {
 
 		if (!bottomTask) {
 			zone.appendChild(curTask);
+          
            
 		} else {
 			zone.insertBefore(curTask, bottomTask);
+           
            
 		}
       

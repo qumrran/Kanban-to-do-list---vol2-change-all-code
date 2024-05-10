@@ -33,10 +33,30 @@
             <h2 class="column-title">Done <span class="task-count">0</span></h2>
             <div class="innerColumnForTasks" id="done-column"></div>
         </div>
+
+
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+              <button class="close"><i class="fa-sharp fa-solid fa-circle-xmark"></i></button>
+              <input type="text" id="modalInput" class="form-control">
+              <button id="saveButton" class="saveBtn">Save Changes<i class="fa-solid fa-floppy-disk"></i></button>
+            </div>
+          </div>
+
+          <div id="alertInfo" class="alertModal">
+            <div class="alert-content">
+              <button class="closeAlert"><i class="fa-sharp fa-solid fa-circle-xmark"></i></button>
+              <span class="alert-text">Input cannot be blank.</span>
+            </div>
+          </div>
     </div>
 
-    <script type="module" src="./state.js"></script>
+  
+      
+
+   
     <script type="module" src="./script.js"></script>
+   
 
 </body>
 

@@ -20,30 +20,30 @@ function renderTasks() {
 		const deleteButton = document.createElement('button');
 		deleteButton.innerHTML = '<i class="fas fa-minus-circle"></i>';
 		deleteButton.classList.add('delete-button');
-        taskElement.appendChild(deleteButton);
-        makeTaskDraggable(taskElement);
-        
+		taskElement.appendChild(deleteButton);
+
+		const editButton = document.createElement('button');
+		editButton.innerHTML = '<i class="fas fa-edit"></i>';
+		editButton.classList.add('edit-button');
+		taskElement.appendChild(editButton);
+
+		makeTaskDraggable(taskElement);
 		return taskElement;
-        
 	}
-   
+    
 
 	// Funkcja dodająca zadania z danej kolumny do odpowiedniego elementu DOM
-function addTasksToColumn(tasks, column) {
-    tasks.forEach((task) => {
-        const taskElement = createTaskElement(task.id, task.text);
-        column.appendChild(taskElement);
-    });
+	function addTasksToColumn(tasks, column) {
+		tasks.forEach((task) => {
+			const taskElement = createTaskElement(task.id, task.text);
+			column.appendChild(taskElement);
+		});
+	}
+
+	// Dodawanie zadań do odpowiednich kolumn
+	addTasksToColumn(state.toDoState, todoColumn);
+	addTasksToColumn(state.inProgressState, inProgressColumn);
+	addTasksToColumn(state.doneState, doneColumn);
 }
-
-// Dodawanie zadań do odpowiednich kolumn
-addTasksToColumn(state.toDoState, todoColumn);
-addTasksToColumn(state.inProgressState, inProgressColumn);
-addTasksToColumn(state.doneState, doneColumn);
-
-
-}
-
-
 
 export { renderTasks };
