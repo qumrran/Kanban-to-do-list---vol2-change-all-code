@@ -1,9 +1,10 @@
-import { state, updateTaskStateInColumn, updateAllTaskOrders } from "./state.js";
-import { updateCounters } from "./script.js";
+import {
+	updateTaskStateInColumn,
+	updateAllTaskOrders,
+} from './state.js';
+import { updateCounters } from './script.js';
 
-
-const innerColumnsForTasks = document.querySelectorAll(".innerColumnForTasks");
-
+const innerColumnsForTasks = document.querySelectorAll('.innerColumnForTasks');
 
 // Funkcja, która sprawia, że element jest przeciągalny
 function makeTaskDraggable(taskElement) {
@@ -33,8 +34,7 @@ innerColumnsForTasks.forEach((zone) => {
 
 			updateTaskStateInColumn(zone, taskId, taskText);
 			updateCounters();
-            updateAllTaskOrders();
-           
+			updateAllTaskOrders();
 		}
 
 		const mouseY = e.clientY;
@@ -43,15 +43,9 @@ innerColumnsForTasks.forEach((zone) => {
 
 		if (!bottomTask) {
 			zone.appendChild(curTask);
-          
-           
 		} else {
 			zone.insertBefore(curTask, bottomTask);
-           
-           
 		}
-      
-   
 	});
 });
 
@@ -75,6 +69,4 @@ const insertAboveTask = (zone, mouseY) => {
 	return closestTask;
 };
 
-
-
-export {makeTaskDraggable};
+export { makeTaskDraggable };

@@ -10,7 +10,6 @@ import { renderTasks } from './render.js';
 const addTaskButton = document.querySelector('.add-task-btn');
 const taskInput = document.querySelector('.task-input');
 const columns = document.querySelectorAll('.column');
-
 const clearAllTasks = document.querySelector('.clear-tasks-btn');
 
 // Obsługa dodawania nowego zadania
@@ -70,6 +69,39 @@ columns.forEach((column) => {
 	});
 });
 
+document.addEventListener('DOMContentLoaded', (event) => {
+	const editModal = document.getElementById('editModal');
+	const modalInput = document.getElementById('modalInput');
+	const closeButton = document.getElementsByClassName('close')[0];
+	const saveButton = document.getElementById('saveButton');
+	const alertModal = document.getElementById('alertInfo');
+	const closeAlertButton = document.querySelector('.closeAlert');
+
+	// Inicjalizacja nasłuchiwaczy zdarzeń
+	closeButton.addEventListener('click', () => {
+		hideModalWithAnimation(editModal);
+	});
+
+	closeAlertButton.addEventListener('click', () => {
+		hideModalWithAnimation(alertModal);
+	});
+
+	saveButton.addEventListener('click', () => {
+		const taskId = editModal.dataset.taskId;
+		const taskElement = document.getElementById(taskId);
+		const newText = modalInput.value;
+
+		if (newText.trim().length > 0) {
+			taskElement.textContent = newText;
+			updateTaskTextinState(taskId, newText);
+			renderTasks();
+			hideModalWithAnimation(editModal);
+		} else {
+			alertModal.style.display = 'block';
+		}
+	});
+});
+
 function handleEditTask(taskId) {
 	const taskElement = document.getElementById(taskId);
 	const taskText = taskElement.textContent;
@@ -77,32 +109,13 @@ function handleEditTask(taskId) {
 	const editModal = document.getElementById('editModal');
 	const modalInput = document.getElementById('modalInput');
 
+	// Ustawia wartość inputa i zapisuje id zadania w dataset
 	modalInput.value = taskText;
+	editModal.dataset.taskId = taskId;
 	editModal.style.display = 'block';
-
-	const closeButton = document.getElementsByClassName('close')[0];
-	closeButton.addEventListener('click', () => {
-		hideModalWithAnimation(editModal);
-	});
-
-	const saveButton = document.getElementById('saveButton');
-	saveButton.addEventListener('click', () => {
-		const newText = modalInput.value;
-		if (newText.trim().length > 0) {
-			taskElement.textContent = newText;
-			updateTaskTextinState(taskId, newText);
-			renderTasks();
-			hideModalWithAnimation(editModal);
-		} else {
-			const alertModal = document.getElementById('alertInfo');
-			alertModal.style.display = 'block';
-			const closeAlertButton = document.querySelector('.closeAlert');
-			closeAlertButton.addEventListener('click', () => {
-				hideModalWithAnimation(alertModal);
-			});
-		}
-	});
 }
+
+
 
 //animacja modalu
 function hideModalWithAnimation(modal) {

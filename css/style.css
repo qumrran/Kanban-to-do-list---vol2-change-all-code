@@ -129,9 +129,8 @@ body {
 }
 .board .task .task-text {
   display: block;
-  justify-self: start;
   width: 8.3rem;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: scroll;
   margin-right: 1rem;
 }

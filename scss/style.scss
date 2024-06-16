@@ -17,11 +17,10 @@ body {
 	}
 
 	.column {
-		
 		margin: 0.625rem;
 		padding: 0.625rem;
 		min-width: 15.625rem;
-        max-width: 21.875rem;
+		max-width: 21.875rem;
 		border: 0.063rem solid $border-thin-white;
 		border-radius: 0.313rem;
 		background-color: $backround-navy-blue;
@@ -29,7 +28,6 @@ body {
 		.innerColumnForTasks {
 			width: 100%;
 			height: calc(100% - 3.125rem);
-			
 		}
 		.column-title {
 			display: flex;
@@ -52,7 +50,6 @@ body {
 				font-size: 0.875rem;
 			}
 		}
-		
 	}
 
 	.task-form {
@@ -124,23 +121,15 @@ body {
 		background-color: $backround-black;
 		cursor: pointer;
 		transition: background-color 0.3s;
-        
 
 		&:hover {
 			background-color: $backround-navy-blue;
 		}
 
-		// .task-content {
-		// 	font-weight: 600;
-        //     padding-right: 1.25rem;
-			
-		// }
-
 		.task-text {
 			display: block;
-			justify-self: start;
 			width: 8.3rem;
-			overflow-y: scroll;
+			overflow-y: hidden;
 			overflow-x: scroll;
 			margin-right: 1rem;
 		}
@@ -167,7 +156,6 @@ body {
 			}
 		}
 		.edit-button {
-			
 			height: 1.25rem;
 			width: 1.25rem;
 			border-radius: 5px;
@@ -177,7 +165,6 @@ body {
 			&:hover {
 				background-color: black;
 				color: white;
-				
 			}
 		}
 	}
@@ -189,154 +176,153 @@ body {
 
 //modal style
 
-
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(1px);
-    background-color: rgba(18, 17, 17, 0.5);
-    animation: fadeIn .3s ease-in-out forwards; 
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	backdrop-filter: blur(1px);
+	background-color: rgba(18, 17, 17, 0.5);
+	animation: fadeIn 0.3s ease-in-out forwards;
 
-    
+	&-content {
+		display: flex;
+		align-items: end;
+		flex-direction: column;
+		background-color: $backround-black;
+		margin: 10% auto;
+		padding: 1rem 1.5rem 1.5rem 1.5rem;
+		border: 0.063rem solid $neutral-white;
+		border-radius: 1rem;
+		width: 17rem;
+		height: 13rem;
 
-    &-content {
-        display: flex;
-        align-items: end;
-        flex-direction: column;
-        background-color: $backround-black;
-        margin: 10% auto;
-        padding: 1rem 1.5rem 1.5rem 1.5rem;
-        border: 0.063rem solid $neutral-white;
-        border-radius: 1rem;
-        width: 17rem;
-        height: 13rem;
-
-        .form-control {
-            width: 100%;
-            height: 2.8rem;
-            color: $neutral-white;
-            padding: 0.625rem;
-            border: 0.063rem solid $border-thin-white;
-            border-radius: 0.25rem;
-            background-color: $backround-black;
-            cursor: pointer;
-
-            &:focus {
-                outline: 0.094rem solid $neutral-white;
-            }
-        }
-
-        .close {
+		.form-control {
+			width: 100%;
+			height: 2.8rem;
+			color: $neutral-white;
+			padding: 0.625rem;
+			border: 0.063rem solid $border-thin-white;
+			border-radius: 0.25rem;
 			background-color: $backround-black;
-			border: none;
-            color: $neutral-white;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            transition: color .3s;
 			cursor: pointer;
 
-            &:hover {
-                color: $border-thin-white;
-                
-            }
-        }
+			&:focus {
+				outline: 0.094rem solid $neutral-white;
+			}
+		}
 
-        .saveBtn {
-            width: 100%;
-            height: 2.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 1rem;
-            padding: 0.625rem;
-            font-family: $roboto;
-            font-weight: 600;
-            font-size: 1.125rem;
-            border-radius: 0.313rem;
-            border: 0.063rem solid $border-thin-white;
-            background-color: $backround-black;
-            color: $neutral-white;
-            cursor: pointer;
-            transition: background-color .3s;
+		.close {
+			background-color: $backround-black;
+			border: none;
+			color: $neutral-white;
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+			transition: color 0.3s;
+			cursor: pointer;
 
-            &:hover {
-                background-color: $column-color;
-            }
-        }
-    }
+			&:hover {
+				color: $border-thin-white;
+			}
+		}
+
+		.saveBtn {
+			width: 100%;
+			height: 2.8rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 1rem;
+			padding: 0.625rem;
+			font-family: $roboto;
+			font-weight: 600;
+			font-size: 1.125rem;
+			border-radius: 0.313rem;
+			border: 0.063rem solid $border-thin-white;
+			background-color: $backround-black;
+			color: $neutral-white;
+			cursor: pointer;
+			transition: background-color 0.3s;
+
+			&:hover {
+				background-color: $column-color;
+			}
+		}
+	}
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 @keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }
 
 .hideModal {
-	animation: fadeOut .3s ease-in-out forwards;
+	animation: fadeOut 0.3s ease-in-out forwards;
 }
 
 // alert modal style
 
 .alertModal {
 	display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(1px);
-	background: linear-gradient(356deg, rgba(0,0,0,1) 20%, rgba(195,34,34,0.3) 100%);
-    animation: fadeIn .3s ease-in-out forwards; 
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	backdrop-filter: blur(1px);
+	background: linear-gradient(
+		356deg,
+		rgba(0, 0, 0, 1) 20%,
+		rgba(195, 34, 34, 0.3) 100%
+	);
+	animation: fadeIn 0.3s ease-in-out forwards;
 	.alert-content {
 		display: flex;
-        align-items: end;
-        flex-direction: column;
-        background-color: $backround-black;
-        margin: 10% auto;
-        padding: 1rem 1.5rem 1.5rem 1.5rem;
-        border: 0.063rem solid $neutral-white;
-        border-radius: 1rem;
-        width: 17rem;
-        height: 13rem;
+		align-items: end;
+		flex-direction: column;
+		background-color: $backround-black;
+		margin: 10% auto;
+		padding: 1rem 1.5rem 1.5rem 1.5rem;
+		border: 0.063rem solid $neutral-white;
+		border-radius: 1rem;
+		width: 17rem;
+		height: 13rem;
 		.closeAlert {
 			background-color: $backround-black;
 			border: none;
-            color: $neutral-white;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            transition: color .3s;
+			color: $neutral-white;
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+			transition: color 0.3s;
 			cursor: pointer;
 
-            &:hover {
-                color: $border-thin-white;
-                
-            }
-        }
+			&:hover {
+				color: $border-thin-white;
+			}
+		}
 		.alert-text {
 			margin-top: 2rem;
 			align-self: center;
 			font-family: $roboto;
-            font-weight: 600;
-            font-size: 1.125rem;
+			font-weight: 600;
+			font-size: 1.125rem;
 			color: $neutral-white;
 		}
 	}
